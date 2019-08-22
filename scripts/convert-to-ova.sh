@@ -28,7 +28,7 @@ aws ec2 wait instance-running --instance-ids $INSTANCE_ID
 
 echo "Exporting instance as OVA"
 EXPORT_TASK_ID=$(aws ec2 create-instance-export-task --instance-id $INSTANCE_ID \
-                                                     --export-to-s3-task ContainerFormat=$CONTAINER_FORMAT,DiskImageFormat=$DISK_IMAGE_FORMAT,S3Bucket=$S3_BUCKET,S3Prefix=builds \
+                                                     --export-to-s3-task ContainerFormat=$CONTAINER_FORMAT,DiskImageFormat=$DISK_IMAGE_FORMAT,S3Bucket=$S3_BUCKET,S3Prefix=$AMI_NAME \
                                                      --target-environment $TARGET_ENVIRONMENT \
                                                      --query 'ExportTask.ExportTaskId' \
                                                      --output text)
